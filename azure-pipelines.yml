@@ -25,7 +25,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'init'
-        backendServiceArm: 'S2-DevOps42-JackR-Project42'
+        backendServiceArm: 'S2-SPN-DevOps42-JackR-Project42'
         backendAzureRmResourceGroupName: 'S2-RG-DevOps42'
         backendAzureRmStorageAccountName: 's2storageaccountdevops42'
         backendAzureRmContainerName: 's2containerdevops42'
@@ -40,7 +40,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'plan'
-        environmentServiceNameAzureRM: 'S2-DevOps42-JackR-Project42'
+        environmentServiceNameAzureRM: 'S2-SPN-DevOps42-JackR-Project42'
 
 - stage: TF_PROVISION
   displayName: 'TF_PROVISION'
@@ -52,7 +52,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'init'
-        backendServiceArm: 'S2-DevOps42-JackR-Project42'
+        backendServiceArm: 'S2-SPN-DevOps42-JackR-Project42'
         backendAzureRmResourceGroupName: 'S2-RG-DevOps42'
         backendAzureRmStorageAccountName: 's2storageaccountdevops42'
         backendAzureRmContainerName: 's2containerdevops42'
@@ -62,7 +62,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'apply'
-        environmentServiceNameAzureRM: 'S2-DevOps42-JackR-Project42'
+        environmentServiceNameAzureRM: 'S2-SPN-DevOps42-JackR-Project42'
 
 - stage: TF_DECOMMISSION
   displayName: 'TF_DECOMMISSION'
@@ -74,7 +74,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'init'
-        backendServiceArm: 'S2-DevOps42-JackR-Project42'
+        backendServiceArm: 'S2-SPN-DevOps42-JackR-Project42'
         backendAzureRmResourceGroupName: 'S2-RG-DevOps42'
         backendAzureRmStorageAccountName: 's2storageaccountdevops42'
         backendAzureRmContainerName: 's2containerdevops42'
@@ -84,4 +84,4 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'destroy'
-        environmentServiceNameAzureRM: 'S2-DevOps42-JackR-Project42'
+        environmentServiceNameAzureRM: 'S2-SPN-DevOps42-JackR-Project42'
