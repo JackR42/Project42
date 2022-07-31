@@ -34,7 +34,7 @@ stages:
       displayName: 'TF_KeyVault'
       inputs:
         azureSubscription: 'S2-SPN-DevOps42-JackR-Project42'
-        KeyVaultName: 'S2-Keyvault42'
+        KeyVaultName: 'S2-KeyVault42-DevOps42'
         SecretsFilter: '*'
         RunAsPreJob: true
     - task: TerraformTaskV3@3
