@@ -15,6 +15,6 @@ steps:
   displayName: 'Run a one-line script'
 
 - task: TerraformInstaller@0
-  displayname: TF_INSTALL
+  displayName: 'TF_Install'
   inputs:
     terraformVersion: 'latest'
