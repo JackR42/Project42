@@ -7,7 +7,7 @@ terraform {
 }
 
 data "azurerm_key_vault" "project42" {
-  name                = "S2-KeyVault42-DevOps42"
+  name                = "S2-KeyVault42"
   resource_group_name = "S2-RG-DevOps42"
 }
 data "azurerm_key_vault_secret" "secret1" {
