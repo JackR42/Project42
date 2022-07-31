@@ -22,5 +22,14 @@ stages:
         terraformVersion: 'latest'
 - stage: TF_PROVISION
   displayName: 'TF_PROVISION'
+  jobs:
+  - job:
+    steps:
+    displayName: 'ToDo'
+
 - stage: TF_DECOMISSION
   displayName: 'TF_DECOMMISSION'
+  jobs:
+  - job:
+    steps:
+    displayName: 'ToDo'
