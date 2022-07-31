@@ -10,11 +10,17 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- task: TerraformInstaller@0
-  displayName: 'TF_Install'
-  inputs:
-    terraformVersion: 'latest'
+stages:
+- stage: TF_VALIDATE
+  displayName: 'TF_VALIDATE'
+  jobs:
+  - job:
+    steps:
+    - task: TerraformInstaller@0
+      displayName: 'Terraform_INSTALL'
+      inputs:
+        terraformVersion: 'latest'
+- stage: TF_PROVISION
+  displayName: 'TF_PROVISION'
+- stage: TF_DECOMISSION
+  displayName: 'TF_DECOMMISSION'
