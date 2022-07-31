@@ -20,16 +20,24 @@ stages:
       displayName: 'Terraform_INSTALL'
       inputs:
         terraformVersion: 'latest'
+
 - stage: TF_PROVISION
   displayName: 'TF_PROVISION'
   jobs:
   - job:
     steps:
-    displayName: 'ToDo'
+    - task: TerraformInstaller@0
+      displayName: 'Terraform_INSTALL'
+      inputs:
+        terraformVersion: 'latest'
 
-- stage: TF_DECOMISSION
+
+- stage: TF_DECOMMISSION
   displayName: 'TF_DECOMMISSION'
   jobs:
   - job:
     steps:
-    displayName: 'ToDo'
+    - task: TerraformInstaller@0
+      displayName: 'Terraform_INSTALL'
+      inputs:
+        terraformVersion: 'latest'
