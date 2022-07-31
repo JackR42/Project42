@@ -17,7 +17,7 @@ stages:
   - job:
     steps:
     - task: TerraformInstaller@0
-      displayName: 'Terraform_INSTALL'
+      displayName: 'TF_Install'
       inputs:
         terraformVersion: 'latest'
     - task: TerraformTaskV3@3
@@ -31,6 +31,12 @@ stages:
         backendAzureRmContainerName: 's2containerdevops42'
         backendAzureRmKey: 'main.tf'
     - task: TerraformTaskV3@3
+      displayName: 'TF_Validate'
+      inputs:
+        provider: 'azurerm'
+        command: 'validate'
+    - task: TerraformTaskV3@3
+      displayName: 'TF_Plan'
       inputs:
         provider: 'azurerm'
         command: 'plan'
@@ -41,10 +47,6 @@ stages:
   jobs:
   - job:
     steps:
-    - task: TerraformInstaller@0
-      displayName: 'ToDo'
-      inputs:
-        terraformVersion: 'latest'
     - task: TerraformTaskV3@3
       displayName: 'TF_Init'
       inputs:
@@ -55,14 +57,31 @@ stages:
         backendAzureRmStorageAccountName: 's2storageaccountdevops42'
         backendAzureRmContainerName: 's2containerdevops42'
         backendAzureRmKey: 'main.tf'
-
+    - task: TerraformTaskV3@3
+      displayName: 'TF_Apply'
+      inputs:
+        provider: 'azurerm'
+        command: 'apply'
+        environmentServiceNameAzureRM: 'S2-DevOps42-JackR-Project42'
 
 - stage: TF_DECOMMISSION
   displayName: 'TF_DECOMMISSION'
   jobs:
   - job:
     steps:
-    - task: TerraformInstaller@0
-      displayName: 'ToDo'
+    - task: TerraformTaskV3@3
+      displayName: 'TF_Init'
       inputs:
-        terraformVersion: 'latest'
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'S2-DevOps42-JackR-Project42'
+        backendAzureRmResourceGroupName: 'S2-RG-DevOps42'
+        backendAzureRmStorageAccountName: 's2storageaccountdevops42'
+        backendAzureRmContainerName: 's2containerdevops42'
+        backendAzureRmKey: 'main.tf'
+    - task: TerraformTaskV3@3
+      displayName: 'TF_Destroy'
+      inputs:
+        provider: 'azurerm'
+        command: 'destroy'
+        environmentServiceNameAzureRM: 'S2-DevOps42-JackR-Project42'
