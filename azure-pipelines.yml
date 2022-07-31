@@ -27,7 +27,7 @@ stages:
   - job:
     steps:
     - task: TerraformInstaller@0
-      displayName: 'Terraform_INSTALL'
+      displayName: 'ToDo'
       inputs:
         terraformVersion: 'latest'
 
@@ -38,6 +38,6 @@ stages:
   - job:
     steps:
     - task: TerraformInstaller@0
-      displayName: 'Terraform_INSTALL'
+      displayName: 'ToDo'
       inputs:
         terraformVersion: 'latest'
