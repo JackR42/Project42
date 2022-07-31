@@ -30,6 +30,16 @@ stages:
       displayName: 'ToDo'
       inputs:
         terraformVersion: 'latest'
+    - task: TerraformTaskV3@3
+      displayName: 'TF_Init'
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'S2-DevOps42-JackR-Project42'
+        backendAzureRmResourceGroupName: 'S2-RG-DevOps42'
+        backendAzureRmStorageAccountName: 's2storageaccountdevops42'
+        backendAzureRmContainerName: 's2containerdevops42'
+        backendAzureRmKey: 'main.tf'
 
 
 - stage: TF_DECOMMISSION
