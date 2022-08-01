@@ -37,6 +37,16 @@ resource "azurerm_mssql_database" "project42" {
   name                = "dba42"
   server_id           = azurerm_mssql_server.project42.id
   license_type        = "LicenseIncluded"
+  collation           = "SQL_Latin1_General_CP1_CI_AS"
+  max_size_gb         = 20
+
+  sku_name                    = "GP_S_Gen5_1"
+  zone_redundant              = false
+  auto_pause_delay_in_minutes = 60
+  min_capacity                = 0.5
+
+  storage_account_type = "LRS"
+
 }
 
 # Create FW rule to allow access from OFFICE
