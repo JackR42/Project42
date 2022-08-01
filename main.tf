@@ -18,7 +18,7 @@ data "azurerm_key_vault_secret" "secret2" {
   name         = "DatabaseAdminPassword"
   key_vault_id = data.azurerm_key_vault.project42.id
 }
-
+xxx
 
 resource "azurerm_resource_group" "project42" {
   name = "S2-RG-Project42"
