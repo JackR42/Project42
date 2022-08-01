@@ -48,7 +48,7 @@ resource "azurerm_mssql_firewall_rule" "project42" {
 }
 # Create FW rule to allow access from HOME
 resource "azurerm_mssql_firewall_rule" "project42" {
-  name                = "FirewallRule1"
+  name                = "FirewallRule2"
   server_id           = azurerm_mssql_server.project42.id
   start_ip_address    = "94.209.108.55"
   end_ip_address      = "94.209.108.55"
