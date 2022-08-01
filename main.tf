@@ -26,14 +26,10 @@ resource "azurerm_resource_group" "project42" {
 }
 
 resource "azurerm_mssql_server" "project42" {
-  name                         = "sqlserver42x679e6e9"
-  resource_group_name          = azurerm_resource_group.project42.name
-  location                     = azurerm_resource_group.project42.location
-  version                      = "12.0"
+ name                         = "sqlserver42x679e6e9"
+ version                      = "12.0"
  administrator_login          = data.azurerm_key_vault_secret.secret1.value
  administrator_login_password = data.azurerm_key_vault_secret.secret2.value
-#  administrator_login          = "admindba"
-#  administrator_login_password = "ABCabc123."
 }
 
 resource "azurerm_mssql_database" "project42" {
