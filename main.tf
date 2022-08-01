@@ -18,7 +18,6 @@ data "azurerm_key_vault_secret" "secret2" {
   name         = "DatabaseAdminPassword"
   key_vault_id = data.azurerm_key_vault.project42.id
 }
-xxx
 
 resource "azurerm_resource_group" "project42" {
   name = "S2-RG-Project42"
@@ -28,6 +27,7 @@ resource "azurerm_resource_group" "project42" {
 resource "azurerm_mssql_server" "project42" {
  name                         = "sqlserver42x679e6e9"
  version                      = "12.0"
+ resource_group_name          = azurerm_resource_group.project42.name
  administrator_login          = data.azurerm_key_vault_secret.secret1.value
  administrator_login_password = data.azurerm_key_vault_secret.secret2.value
 }
