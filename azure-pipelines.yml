@@ -102,6 +102,10 @@ stages:
   jobs:
   - job:
     steps:
+    - task: TerraformInstaller@0
+      displayName: 'TF_Install'
+      inputs:
+        terraformVersion: 'latest'
     - task: TerraformTaskV3@3
       displayName: 'TF_Init'
       inputs:
