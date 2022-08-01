@@ -8,8 +8,8 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
-#  vmImage: windows-latest
+#  vmImage: ubuntu-latest
+  vmImage: windows-latest
 
 stages:
 - stage: TF_VALIDATE
