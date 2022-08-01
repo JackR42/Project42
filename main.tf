@@ -45,7 +45,7 @@ resource "azurerm_mssql_database" "project42" {
   auto_pause_delay_in_minutes = 60
   min_capacity                = 0.5
 
-  storage_account_type = "LRS"
+  storage_account_type        = "Geo Local Zone]"
 
 }
 
