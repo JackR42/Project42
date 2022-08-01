@@ -11,11 +11,11 @@ data "azurerm_key_vault" "project42" {
   resource_group_name = "S2-RG-DevOps42"
 }
 data "azurerm_key_vault_secret" "secret1" {
-  name         = "SqlAdminUserName"
+  name         = "DatabaseAdminUserName"
   key_vault_id = data.azurerm_key_vault.project42.id
 }
 data "azurerm_key_vault_secret" "secret2" {
-  name         = "SqlAdminPassword"
+  name         = "DatabaseAdminPassword"
   key_vault_id = data.azurerm_key_vault.project42.id
 }
 
