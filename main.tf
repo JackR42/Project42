@@ -39,10 +39,17 @@ resource "azurerm_mssql_database" "project42" {
   license_type        = "LicenseIncluded"
 }
 
-# Create FW rule to allow access from own IP address to the SQL Instance
+# Create FW rule to allow access from OFFICE
 resource "azurerm_mssql_firewall_rule" "project42" {
   name                = "FirewallRule1"
   server_id           = azurerm_mssql_server.project42.id
   start_ip_address    = "91.205.194.1"
   end_ip_address      = "91.205.194.1"
+}
+# Create FW rule to allow access from HOME
+resource "azurerm_mssql_firewall_rule" "project42" {
+  name                = "FirewallRule1"
+  server_id           = azurerm_mssql_server.project42.id
+  start_ip_address    = "94.209.108.55"
+  end_ip_address      = "94.209.108.55"
 }
