@@ -36,7 +36,7 @@ resource "azurerm_mssql_server" "project42" {
 resource "azurerm_mssql_database" "project42" {
   name                = "dba42"
   server_id           = azurerm_mssql_server.project42.id
-  license_type        = "LicenseIncluded"
+#  license_type        = "LicenseIncluded"
   collation           = "SQL_Latin1_General_CP1_CI_AS"
   max_size_gb         = 20
 
