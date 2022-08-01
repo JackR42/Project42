@@ -78,6 +78,18 @@ stages:
         provider: 'azurerm'
         command: 'apply'
         environmentServiceNameAzureRM: 'S2-SPN-DevOps42-JackR-Project42'
+    - task: SqlAzureDacpacDeployment@1
+      displayName: 'TF_SQL'
+      inputs:
+        azureSubscription: 'S2-SPN-DevOps42-JackR-Project42'
+        AuthenticationType: 'server'
+        ServerName: 'sqlserver42x679e6e9.database.windows.net'
+        DatabaseName: 'dba42'
+        SqlUsername: 'admindba'
+        SqlPassword: 'ABCabc123.42'
+        deployType: 'SqlTask'
+        SqlFile: 'dba42.sql'
+        IpDetectionMethod: 'AutoDetect'
 
 - stage: TF_DECOMMISSION
   displayName: 'TF_DECOMMISSION'
