@@ -41,11 +41,12 @@ resource "azurerm_mssql_database" "project42" {
   max_size_gb         = 20
 
   sku_name                    = "GP_S_Gen5_1"
+#  sku_name                    = "s0"
   zone_redundant              = false
   auto_pause_delay_in_minutes = 60
   min_capacity                = 0.5
 
-  storage_account_type        = "[Geo Local Zone]"
+  storage_account_type        = "Geo Local Zone"
 
 }
 
