@@ -18,12 +18,13 @@ data "azurerm_key_vault_secret" "secret2" {
   name         = "DatabaseAdminPassword"
   key_vault_id = data.azurerm_key_vault.project42.id
 }
-data "database" "InstanceName" {
-  name         = "InstanceName"
-  default      = "sqlserver42x679e6e9"
+
+variable "SqlInstanceName" {
+  description = "SqlInstanceName"
+  default     = "sqlserver42x679e6e9"
 }
-data "database" "DatabaseName" {
-  name         = "DatabaseName"
+variable "SqlDatabaseName" {
+  name         = "SqlDatabaseName"
   default      = "dba42"
 }
 
@@ -34,7 +35,7 @@ resource "azurerm_resource_group" "project42" {
 
 resource "azurerm_mssql_server" "project42" {
 # name                         = "sqlserver42x679e6e9"
- name                         = data.database.InstanceName.value
+ name                         = "$(var.SqlInstanceName)"
  version                      = "12.0"
  resource_group_name          = azurerm_resource_group.project42.name
  location                     = azurerm_resource_group.project42.location
@@ -44,7 +45,7 @@ resource "azurerm_mssql_server" "project42" {
 
 resource "azurerm_mssql_database" "project42" {
 #  name                = "dba42"
-  name                = data.database.DatabaseName.value
+  name                = "$(var.SqlDatabaseName)"
   server_id           = azurerm_mssql_server.project42.id
 #  license_type        = "LicenseIncluded"
   collation           = "SQL_Latin1_General_CP1_CI_AS"
