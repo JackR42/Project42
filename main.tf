@@ -47,7 +47,7 @@ variable "sql_database_name" {
 
 ### BEGIN MAIN
 resource "azurerm_resource_group" "project42" {
-  name = "${var.resourcegroupmain}"
+  name = "${var.resource_group_main}"
   location = "${var.location}"
 }
 
