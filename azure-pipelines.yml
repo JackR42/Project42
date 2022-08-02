@@ -9,7 +9,7 @@ trigger:
 
 pool:
 #  vmImage: ubuntu-latest
-  vmImage: windows-latest
+  vmImage: windows-latest #Windows Required as Ubunta does not support  DacPac provider
 
 stages:
 - stage: TF_VALIDATE
@@ -90,8 +90,6 @@ stages:
         AuthenticationType: 'server'
         ServerName: 'sqlserver42x679e6e9.database.windows.net'
         DatabaseName: 'dba42'
-#        SqlUsername: 'admindba'
-#        SqlPassword: 'ABCabc123.42'
         SqlUsername: '$(DatabaseAdminUserName)'
         SqlPassword: '$(DatabaseAdminPassword)'
         deployType: 'SqlTask'
