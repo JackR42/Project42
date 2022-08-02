@@ -54,8 +54,8 @@ variable "sql_database_name" {
 #sql_database_name = "dba42-dev"xxx
 
 resource "azurerm_resource_group" "project42" {
-  name = "var.resource_group_name"
-  location = "var.location_name"
+  name = "${var.resource_group_name}"
+  location = "${var.location_name}"
 #  name = "${var.resource_group_main}"
 #  location = "${var.location}"
 }
