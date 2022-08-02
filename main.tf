@@ -36,7 +36,7 @@ variable "sql_instance_name" {
 }
 variable "sql_instance_name_fqdn" {
   description = "SqlInstanceNameFqdn"
-  default     = "${var.sql_instance_name}.database.windows.net"
+  default     = "sqlserver42x679e6e9.database.windows.net"
 }
 variable "sql_database_name" {
   description = "SqlDatabaseName"
