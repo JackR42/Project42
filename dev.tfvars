@@ -1,5 +1,5 @@
 env = "dev"
-location = "westeurope"
+location_name = "westeurope"
 resource_group_name = "S2-RG-DEV-Project42"
 sql_instance_name = "sql42-dev-x679e6e9"
 sql_instance_name_fqdn = "sql42-dev-x679e6e9.database.windows.net"
