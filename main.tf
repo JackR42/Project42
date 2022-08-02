@@ -46,18 +46,10 @@ variable "sql_database_name" {
 ### END VARs
 
 ### BEGIN MAIN
-#xxx
-#location_name = "westeurope"
-#resource_group_name = "S2-RG-DEV-Project42"
-#sql_instance_name = "sql42-dev-x679e6e9"
-#sql_instance_name_fqdn = "sql42-dev-x679e6e9.database.windows.net"
-#sql_database_name = "dba42-dev"xxx
 
 resource "azurerm_resource_group" "project42" {
-  name = "${var.resource_group_name}"
-  location = "${var.location_name}"
-#  name = "${var.resource_group_main}"
-#  location = "${var.location}"
+  name = "${var.resource_group_main}"
+  location = "${var.location}"
 }
 
 resource "azurerm_mssql_server" "project42" {
