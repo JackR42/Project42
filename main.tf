@@ -22,23 +22,23 @@ data "azurerm_key_vault_secret" "secret2" {
 ### END KeyVault
 
 ### BEGIN VARs
-variable "Location" {
-  description = "location"
+variable "location" {
+  description = "Location"
   default     = "westeurope"
 }
-variable "ResourceGroupMain" {
+variable "resourcegroupmain" {
   description = "ResourceGroupMain"
   default     = "S2-RG-Project42"
 }
-variable "SqlInstanceName" {
+variable "sqlinstancename" {
   description = "SqlInstanceName"
   default     = "sqlserver42x679e6e9"
 }
-variable "SqlInstanceNameFqdn" {
+variable "sqlinstancenamefqdn" {
   description = "SqlInstanceNameFqdn"
-  default     = "sqlserver42x679e6e9.database.windows.net"
+  default     = "${var.sqlinstancename}.database.windows.net"
 }
-variable "SqlDatabaseName" {
+variable "sqldatabasename" {
   description = "SqlDatabaseName"
   default     = "dba42"
 }
@@ -47,12 +47,12 @@ variable "SqlDatabaseName" {
 
 ### BEGIN MAIN
 resource "azurerm_resource_group" "project42" {
-  name = "${var.ResourceGroupMain}"
-  location = "${var.Location}"
+  name = "${var.resourcegroupmain}"
+  location = "${var.location}"
 }
 
 resource "azurerm_mssql_server" "project42" {
- name = "${var.SqlInstanceName}"
+ name = "${var.sqlinstancename}"
  version = "12.0"
  resource_group_name = azurerm_resource_group.project42.name
  location = azurerm_resource_group.project42.location
@@ -61,9 +61,8 @@ resource "azurerm_mssql_server" "project42" {
 }
 
 resource "azurerm_mssql_database" "project42" {
-  name = "${var.SqlDatabaseName}"
+  name = "${var.sqldatabasename}"
   server_id = azurerm_mssql_server.project42.id
-#  license_type = "LicenseIncluded"
   collation = "SQL_Latin1_General_CP1_CI_AS"
   max_size_gb = 20
   sku_name = "GP_S_Gen5_1"
@@ -71,6 +70,7 @@ resource "azurerm_mssql_database" "project42" {
   auto_pause_delay_in_minutes = 60
   min_capacity = 0.5
   storage_account_type = "Local"
+# license_type = "LicenseIncluded"
 }
 
 # Create FW rule to allow access from OFFICE
