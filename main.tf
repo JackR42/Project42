@@ -24,8 +24,8 @@ variable "SqlInstanceName" {
   default     = "sqlserver42x679e6e9"
 }
 variable "SqlDatabaseName" {
-  name         = "SqlDatabaseName"
-  default      = "dba42"
+  description = "SqlDatabaseName"
+  default     = "dba42"
 }
 
 resource "azurerm_resource_group" "project42" {
