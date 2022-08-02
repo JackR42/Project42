@@ -22,7 +22,7 @@ data "azurerm_key_vault_secret" "secret2" {
 ### END KeyVault
 
 ### BEGIN VARs
-variable "location" {
+variable "Location" {
   description = "location"
   default     = "westeurope"
 }
