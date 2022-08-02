@@ -26,19 +26,19 @@ variable "location" {
   description = "Location"
   default     = "westeurope"
 }
-variable "resourcegroupmain" {
+variable "resource_group_main" {
   description = "ResourceGroupMain"
   default     = "S2-RG-Project42"
 }
-variable "sqlinstancename" {
+variable "sql_instance_name" {
   description = "SqlInstanceName"
   default     = "sqlserver42x679e6e9"
 }
-variable "sqlinstancenamefqdn" {
+variable "sql_instance_name_fqdn" {
   description = "SqlInstanceNameFqdn"
-  default     = "${var.sqlinstancename}.database.windows.net"
+  default     = "${var.sql_instance_name}.database.windows.net"
 }
-variable "sqldatabasename" {
+variable "sql_database_name" {
   description = "SqlDatabaseName"
   default     = "dba42"
 }
@@ -52,7 +52,7 @@ resource "azurerm_resource_group" "project42" {
 }
 
 resource "azurerm_mssql_server" "project42" {
- name = "${var.sqlinstancename}"
+ name = "${var.sql_instance_name}"
  version = "12.0"
  resource_group_name = azurerm_resource_group.project42.name
  location = azurerm_resource_group.project42.location
@@ -61,7 +61,7 @@ resource "azurerm_mssql_server" "project42" {
 }
 
 resource "azurerm_mssql_database" "project42" {
-  name = "${var.sqldatabasename}"
+  name = "${var.sql_database_name}"
   server_id = azurerm_mssql_server.project42.id
   collation = "SQL_Latin1_General_CP1_CI_AS"
   max_size_gb = 20
