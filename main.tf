@@ -18,6 +18,14 @@ data "azurerm_key_vault_secret" "secret2" {
   name         = "DatabaseAdminPassword"
   key_vault_id = data.azurerm_key_vault.project42.id
 }
+data "database" "project42" {
+  name         = "InstanceName"
+  default      = "sqlserver42x679e6e9"
+}
+data "database" "project42" {
+  name         = "DatabaseName"
+  default      = "dba42"
+}
 
 resource "azurerm_resource_group" "project42" {
   name = "S2-RG-Project42"
@@ -25,7 +33,8 @@ resource "azurerm_resource_group" "project42" {
 }
 
 resource "azurerm_mssql_server" "project42" {
- name                         = "sqlserver42x679e6e9"
+# name                         = "sqlserver42x679e6e9"
+ name                         = data.database.project42.InstanceName.value
  version                      = "12.0"
  resource_group_name          = azurerm_resource_group.project42.name
  location                     = azurerm_resource_group.project42.location
@@ -34,20 +43,17 @@ resource "azurerm_mssql_server" "project42" {
 }
 
 resource "azurerm_mssql_database" "project42" {
-  name                = "dba42"
+#  name                = "dba42"
+  name                = data.database.project42.DatabaseName.value
   server_id           = azurerm_mssql_server.project42.id
 #  license_type        = "LicenseIncluded"
   collation           = "SQL_Latin1_General_CP1_CI_AS"
   max_size_gb         = 20
-
   sku_name                    = "GP_S_Gen5_1"
-#  sku_name                    = "s0"
   zone_redundant              = false
   auto_pause_delay_in_minutes = 60
   min_capacity                = 0.5
-
   storage_account_type        = "Local"
-
 }
 
 # Create FW rule to allow access from OFFICE
