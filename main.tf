@@ -92,7 +92,7 @@ resource "azurerm_mssql_firewall_rule" "project42-fw2" {
 #WebSite
 #Create Storage account
 resource "azurerm_storage_account" "storage_account42" {
-  name = "storage42-x679e6e9"
+  name = "website42x679e6e9"
   resource_group_name = azurerm_resource_group.project42.name
  
   location = azurerm_resource_group.project42.location
