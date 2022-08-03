@@ -65,7 +65,7 @@ resource "azurerm_mssql_database" "project42" {
   name = "${var.sql_database_name}"
   server_id = azurerm_mssql_server.project42.id
   collation = "SQL_Latin1_General_CP1_CI_AS"
-  max_size_gb = 20
+  max_size_gb = 2
   sku_name = "GP_S_Gen5_1"
   zone_redundant = false
   auto_pause_delay_in_minutes = 60
