@@ -88,4 +88,30 @@ resource "azurerm_mssql_firewall_rule" "project42-fw2" {
   start_ip_address = "94.209.108.55"
   end_ip_address = "94.209.108.55"
 }
+
+#WebSite
+#Create Storage account
+resource "azurerm_storage_account" "storage_account42" {
+  name = "storage42"
+  resource_group_name = azurerm_resource_group.project42.name
+ 
+  location = azurerm_resource_group.project42.location
+  account_tier = "Standard"
+  account_replication_type = "LRS"
+  account_kind = "StorageV2"
+ 
+  static_website {
+    index_document = "index.html"
+  }
+}
+
+#Add index.html to blob storage
+resource "azurerm_storage_blob" "website42" {
+  name                   = "index.html"
+  storage_account_name   = azurerm_storage_account.storage_account.name
+  storage_container_name = "$web"
+  type                   = "Block"
+  content_type           = "text/html"
+  source_content         = "<h1>Hello Website42!</h1>"
+}
 ### END MAIN
