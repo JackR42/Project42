@@ -114,4 +114,6 @@ resource "azurerm_storage_blob" "website42" {
   content_type           = "text/html"
   source_content         = "<h1>Hello Website42!</h1>"
 }
+# https://website42x679e6e9.z6.web.core.windows.net
+# https://medium.com/bb-tutorials-and-thoughts/azure-building-different-environments-with-terraform-using-workspaces-66e1fb90f2d3
 ### END MAIN
