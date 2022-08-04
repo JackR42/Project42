@@ -116,4 +116,5 @@ resource "azurerm_storage_blob" "website42" {
 }
 # https://website42x679e6e9.z6.web.core.windows.net
 # https://medium.com/bb-tutorials-and-thoughts/azure-building-different-environments-with-terraform-using-workspaces-66e1fb90f2d3
+# https://medium.com/microsoftazure/creating-a-single-secure-azure-devops-yaml-pipeline-to-provision-multiple-environments-using-620900aae18
 ### END MAIN
