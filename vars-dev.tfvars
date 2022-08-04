@@ -1,7 +1,7 @@
 # Generic variables
 env = "dev"
 location-name = "westeurope"
-resource-group_name = "S2-RG-Project42"
+resource-group-name = "S2-RG-Project42"
 
 # Database variables
 database-instance-name = "sql42-x679e6e9"
