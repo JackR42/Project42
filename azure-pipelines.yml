@@ -71,7 +71,6 @@ stages:
         backendAzureRmResourceGroupName: 'S2-RG-DevOps42'
         backendAzureRmStorageAccountName: 's2storageaccountdevops42'
         backendAzureRmContainerName: 's2containerdevops42'
-#        backendAzureRmKey: 'main.tf'
         backendAzureRmKey: 'main.tfstate'
 
     - task: AzureKeyVault@2      
