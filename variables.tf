@@ -16,9 +16,9 @@ variable "database-instance-name" {
 variable "database-instance-name-fqdn" {
   description = "This is the FQDNname for the SQL Server Instance"
 }
-variable "database-database1-name" {
-  description = "This is the name for the database"
-}
+#variable "database-database1-name" {
+#  description = "This is the name for the database"
+#}
 
 # Static website variables
 variable "web-storage-account-name" {
