@@ -21,12 +21,12 @@
 #}
 
 # Static website variables
-variable "web-storage-account-name" {
-  description = "The name of the storage account"
-}
-variable "web-index-document" {
-  description = "The index document of the website"
-}
-variable "web-source-content" {
-  description = "This is the source content for the static website"
-}
+#variable "web-storage-account-name" {
+#  description = "The name of the storage account"
+#}
+#variable "web-index-document" {
+#  description = "The index document of the website"
+#}
+#variable "web-source-content" {
+#  description = "This is the source content for the static website"
+#}
