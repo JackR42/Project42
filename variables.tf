@@ -1,7 +1,7 @@
 # Generic variables
-#variable "env" {
-#    description = "The name of the environment"
-#}
+variable "env" {
+    description = "The name of the environment"
+}
 #variable "resource-group-name" {
 #    description = "The name of the resource group"
 #}
