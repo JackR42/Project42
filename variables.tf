@@ -21,7 +21,7 @@ variable "database-name" {
 }
 
 # Static website variables
-variable "storage-account-name" {
+variable "web-storage-account-name" {
   description = "The name of the storage account"
 }
 variable "web-index" {
