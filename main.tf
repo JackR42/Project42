@@ -48,10 +48,10 @@ variable "sql_database_name" {
 ### BEGIN MAIN
 
 resource "azurerm_resource_group" "project42" {
-#  name = "${var.resource_group_main}"
-#  location = "${var.location}"
-  name = var.resource-group-name
-  location = var.location-name
+  name = "${var.resource_group_main}"
+  location = "${var.location}"
+#  name = var.resource-group-name
+#  location = var.location-name
 }
 
 resource "azurerm_mssql_server" "project42" {
