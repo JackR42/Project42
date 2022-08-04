@@ -1,14 +1,14 @@
 # Generic variables
 variable "env" {
     description = "The name of the environment"
-#    default = "env-default"
+    default = "env-default"
 }
-#variable "resource-group-name" {
-#    description = "The name of the resource group"
-#}
-#variable "location-name" {
-#  description = "The name of the Azure Region in which all resources should be created."
-#}
+variable "resource-group-name" {
+    description = "The name of the resource group"
+}
+variable "location-name" {
+  description = "The name of the Azure Region in which all resources should be created."
+}
 
 # Database variables
 #variable "database-instance-name" {
