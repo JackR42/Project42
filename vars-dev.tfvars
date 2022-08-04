@@ -1,5 +1,5 @@
 # Generic variables
-env = "dev"
+#env = "dev"
 location-name = "westeurope"
 resource-group-name = "S2-RG-Project42"
 
