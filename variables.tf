@@ -10,12 +10,12 @@ variable "location-name" {
 }
 
 # Database variables
-variable "database-instance-name" {
-  description = "This is the name for the SQL Server Instance"
-}
-variable "database-instance-name-fqdn" {
-  description = "This is the FQDNname for the SQL Server Instance"
-}
+#variable "database-instance-name" {
+#  description = "This is the name for the SQL Server Instance"
+#}
+3variable "database-instance-name-fqdn" {
+#  description = "This is the FQDNname for the SQL Server Instance"
+#}
 #variable "database-database1-name" {
 #  description = "This is the name for the database"
 #}
