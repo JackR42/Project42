@@ -4,9 +4,8 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-#Do not trigger Pipeline Run / build on commit into Main 
-#trigger:
-#- main
+trigger:
+- main
 
 pool:
 #  vmImage: ubuntu-latest
@@ -118,7 +117,7 @@ stages:
         backendAzureRmResourceGroupName: 'S2-RG-DevOps42'
         backendAzureRmStorageAccountName: 's2storageaccountdevops42'
         backendAzureRmContainerName: 's2containerdevops42'
-        backendAzureRmKey: 'main.tf'
+        backendAzureRmKey: 'main.tfstate'
     - task: TerraformTaskV3@3
       displayName: 'TF_Destroy'
       inputs:
