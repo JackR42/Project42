@@ -104,7 +104,7 @@ resource "azurerm_storage_account" "storage_account42" {
  
   static_website {
 #    index_document = "index.html"
-     index_document = "${var."web-index-document}"
+     index_document = "${var.web-index-document}"
   }
 }
 
