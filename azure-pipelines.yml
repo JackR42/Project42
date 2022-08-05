@@ -122,5 +122,5 @@ stages:
       displayName: 'TF_Destroy'
       inputs:
         provider: 'azurerm'
-        command: 'destroy'
+#        command: 'destroy'
         environmentServiceNameAzureRM: 'S2-SPN-DevOps42-JackR-Project42'
