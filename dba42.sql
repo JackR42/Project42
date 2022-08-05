@@ -1,4 +1,7 @@
 -- Idempotent
+select @@ServerName, DB_NAME(), Suser_Sname()
+
+/* Destroy */
 if (OBJECT_ID('s42.f42') IS NOT NULL) drop function [s42].[f42]
 if (OBJECT_ID('s42.p42') IS NOT NULL) drop procedure [s42].[p42]
 if (OBJECT_ID('s42.v42') IS NOT NULL) drop view [s42].[v42]
