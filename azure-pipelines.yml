@@ -85,13 +85,15 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'apply'
+        commandOptions: '-input=false -var-file="vars-dev.tfvars"'
         environmentServiceNameAzureRM: 'S2-SPN-DevOps42-JackR-Project42'
-    - task: SqlAzureDacpacDeployment@1
+    - task: AzureDacpacDeployment@1
       displayName: 'TF_SQL'
       inputs:
         azureSubscription: 'S2-SPN-DevOps42-JackR-Project42'
         AuthenticationType: 'server'
-        ServerName: 'sqlserver42x679e6e9.database.windows.net'
+#        ServerName: 'sqlserver42x679e6e9.database.windows.net'
+        ServerName: '${var.database-instance-name-fqdn}'
         DatabaseName: 'dba42'
         SqlUsername: '$(DatabaseAdminUserName)'
         SqlPassword: '$(DatabaseAdminPassword)'
