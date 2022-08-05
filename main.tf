@@ -104,14 +104,14 @@ resource "azurerm_storage_account" "storage_account42" {
  
   static_website {
 #    index_document = "index.html"
-     index_document = "${var.web-index}"
+     index_document = "${var."web-index-document}"
   }
 }
 
 #Add index.html to blob storage
 resource "azurerm_storage_blob" "website42" {
 #  name                   = "index.html"
-  name                   = "${var.web-index}"
+  name                   = "${var.web-index-document}"
   storage_account_name   = azurerm_storage_account.storage_account42.name
   storage_container_name = "$web"
   type                   = "Block"
