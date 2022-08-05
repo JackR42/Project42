@@ -19,6 +19,11 @@ data "azurerm_key_vault_secret" "secret2" {
   name         = "DatabaseAdminPassword"
   key_vault_id = data.azurerm_key_vault.project42.id
 }
+data "database_instance" "name_fqdn" {
+  name         = "database_instance_name_fqdn"
+  value        = var.database-instance-name-fqdn
+}
+
 ### END KeyVault
 
 ### BEGIN MAIN
