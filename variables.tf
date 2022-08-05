@@ -29,7 +29,7 @@ variable "database-database1-name" {
 # Static website variables
 variable "web-storage-account-name" {
   description = "The name of the storage account"
-  default = "web-storage-account-default"
+  default = "webstorageaccountname679e6e9"
 }
 variable "web-index-document" {
   description = "The index document of the website"
