@@ -19,15 +19,9 @@ data "azurerm_key_vault_secret" "secret2" {
   name         = "DatabaseAdminPassword"
   key_vault_id = data.azurerm_key_vault.project42.id
 }
-data "database_instance" "name_fqdn" {
-  name         = "database_instance_name_fqdn"
-  value        = var.database-instance-name-fqdn
-}
-
 ### END KeyVault
 
 ### BEGIN MAIN
-
 resource "azurerm_resource_group" "project42" {
   name = "${var.resource-group-name}"
   location = "${var.location-name}"
@@ -95,9 +89,8 @@ resource "azurerm_storage_blob" "website42" {
   content_type           = "text/html"
   source_content         = "${var.web-source-content}"
 }
-
+# https://website42x679e6e9.z6.web.core.windows.net
 ### END MAIN
 
-# https://website42x679e6e9.z6.web.core.windows.net
 # https://medium.com/bb-tutorials-and-thoughts/azure-building-different-environments-with-terraform-using-workspaces-66e1fb90f2d3
 # https://medium.com/microsoftazure/creating-a-single-secure-azure-devops-yaml-pipeline-to-provision-multiple-environments-using-620900aae18
