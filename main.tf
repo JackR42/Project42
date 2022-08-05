@@ -53,7 +53,8 @@ resource "azurerm_resource_group" "project42" {
 }
 
 resource "azurerm_mssql_server" "project42" {
- name = "${var.sql_instance_name}"
+# name = "${var.sql_instance_name}"
+ name = "${var.sql-instance-name}"
  version = "12.0"
  resource_group_name = azurerm_resource_group.project42.name
  location = azurerm_resource_group.project42.location
@@ -62,7 +63,8 @@ resource "azurerm_mssql_server" "project42" {
 }
 
 resource "azurerm_mssql_database" "project42" {
-  name = "${var.sql_database_name}"
+#  name = "${var.sql_database_name}"
+  name = "${var.sql-database-name}"
   server_id = azurerm_mssql_server.project42.id
   collation = "SQL_Latin1_General_CP1_CI_AS"
   max_size_gb = 2
