@@ -9,7 +9,7 @@ variable "resource-group-name" {
 }
 variable "location-name" {
   description = "The name of the Azure Region in which all resources should be created."
-  default = "Western Europe"
+  default = "westeurope"
 }
 
 # Database variables
