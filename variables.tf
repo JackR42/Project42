@@ -15,9 +15,9 @@ variable "location-name" {
 # Database variables
 variable "database-instance-name" {
   description = "This is the name for the SQL Server Instance"
-  default = "database-instance-default"
+##  default = "database-instance-default"
 }
-data "database-instance-name-fqdn" {
+variable "database-instance-name-fqdn" "project42" {
   description = "This is the FQDN name for the SQL Server Instance"
   default = "database-instance-fqdn-default"
 }
