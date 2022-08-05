@@ -9,7 +9,7 @@ variable "resource-group-name" {
 }
 variable "location-name" {
   description = "The name of the Azure Region in which all resources should be created."
-  default = "location-default"
+  default = "Western Europe"
 }
 
 # Database variables
@@ -17,8 +17,8 @@ variable "database-instance-name" {
   description = "This is the name for the SQL Server Instance"
   default = "database-instance-default"
 }
-variable "database-instance-name-fqn" {
-  description = "This is the FQDNname for the SQL Server Instance"
+variable "database-instance-name-fqdn" {
+  description = "This is the FQDN name for the SQL Server Instance"
   default = "database-instance-fqdn-default"
 }
 variable "database-database1-name" {
