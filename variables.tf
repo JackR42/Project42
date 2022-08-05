@@ -17,7 +17,7 @@ variable "database-instance-name" {
   description = "This is the name for the SQL Server Instance"
   default = "database-instance-default"
 }
-variable "database-instance-name-fqdn" {
+data "database-instance-name-fqdn" {
   description = "This is the FQDN name for the SQL Server Instance"
   default = "database-instance-fqdn-default"
 }
