@@ -93,7 +93,7 @@ stages:
       inputs:
         azureSubscription: 'S2-SPN-DevOps42-JackR-Project42'
         AuthenticationType: 'server'
-        ServerName: 'sqlserver42x679e6e9.database.windows.net'
+        ServerName: 'sql42x679e6e9.database.windows.net'
         DatabaseName: 'dba42'
         SqlUsername: '$(DatabaseAdminUserName)'
         SqlPassword: '$(DatabaseAdminPassword)'
