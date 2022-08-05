@@ -1,5 +1,4 @@
 -- Idempotent
-select SVR=@@SERVERNAME, USR=SUSER_SNAME(), DB=DB_NAME()
 
 /* Destroy */
 if (OBJECT_ID('s42.f42') IS NOT NULL) drop function [s42].[f42]
