@@ -1,5 +1,5 @@
 -- Idempotent
-select @@ServerName, DB_NAME(), Suser_Sname()
+select SVR=@@SERVERNAME, USR=SUSER_SNAME(), DB=DB_NAME()
 
 /* Destroy */
 if (OBJECT_ID('s42.f42') IS NOT NULL) drop function [s42].[f42]
@@ -18,6 +18,7 @@ create table s42.t42(
 go
 insert into s42.t42 values(1, '42')
 insert into s42.t42 values(2, '911')
+insert into s42.t42 values(3, '1433')
 go
 create view s42.v42
 as
