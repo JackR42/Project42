@@ -114,8 +114,10 @@ resource "azurerm_storage_blob" "website42" {
   storage_container_name = "$web"
   type                   = "Block"
   content_type           = "text/html"
-  source_content         = "<h1>Hello Website42!</h1>"
+#  source_content         = "<h1>Hello Website42!</h1>"
+  source_content         = "${var.web-source-content}"
 }
+
 # https://website42x679e6e9.z6.web.core.windows.net
 # https://medium.com/bb-tutorials-and-thoughts/azure-building-different-environments-with-terraform-using-workspaces-66e1fb90f2d3
 # https://medium.com/microsoftazure/creating-a-single-secure-azure-devops-yaml-pipeline-to-provision-multiple-environments-using-620900aae18
