@@ -21,30 +21,6 @@ data "azurerm_key_vault_secret" "secret2" {
 }
 ### END KeyVault
 
-### BEGIN VARs
-#variable "location" {
-#  description = "Location"
-#  default     = "westeurope"
-#}
-#variable "resource_group_main" {
-#  description = "ResourceGroupMain"
-#  default     = "S2-RG-Project42"
-#}
-#variable "sql_instance_name" {
-#  description = "SqlInstanceName"
-#  default     = "sqlserver42x679e6e9"
-#}
-#variable "sql_instance_name_fqdn" {
-#  description = "SqlInstanceNameFqdn"
-#  default     = "sqlserver42x679e6e9.database.windows.net"
-#}
-#variable "sql_database_name" {
-#  description = "SqlDatabaseName"
-#  default     = "dba42"
-#}
-
-### END VARs
-
 ### BEGIN MAIN
 
 resource "azurerm_resource_group" "project42" {
@@ -53,8 +29,7 @@ resource "azurerm_resource_group" "project42" {
 }
 
 resource "azurerm_mssql_server" "project42" {
-# name = "${var.sql_instance_name}"
- name = "${var.sql-instance-name}"
+ name = "${var.database-instance-name}"
  version = "12.0"
  resource_group_name = azurerm_resource_group.project42.name
  location = azurerm_resource_group.project42.location
@@ -63,8 +38,7 @@ resource "azurerm_mssql_server" "project42" {
 }
 
 resource "azurerm_mssql_database" "project42" {
-#  name = "${var.sql_database_name}"
-  name = "${var.sql-database-name}"
+  name = "${var.database-database1-name}"
   server_id = azurerm_mssql_server.project42.id
   collation = "SQL_Latin1_General_CP1_CI_AS"
   max_size_gb = 2
@@ -103,14 +77,12 @@ resource "azurerm_storage_account" "storage_account42" {
   account_kind = "StorageV2"
  
   static_website {
-#    index_document = "index.html"
      index_document = "${var.web-index-document}"
   }
 }
 
 #Add index.html to blob storage
 resource "azurerm_storage_blob" "website42" {
-#  name                   = "index.html"
   name                   = "${var.web-index-document}"
   storage_account_name   = azurerm_storage_account.storage_account42.name
   storage_container_name = "$web"
@@ -119,7 +91,8 @@ resource "azurerm_storage_blob" "website42" {
   source_content         = "${var.web-source-content}"
 }
 
+### END MAIN
+
 # https://website42x679e6e9.z6.web.core.windows.net
 # https://medium.com/bb-tutorials-and-thoughts/azure-building-different-environments-with-terraform-using-workspaces-66e1fb90f2d3
 # https://medium.com/microsoftazure/creating-a-single-secure-azure-devops-yaml-pipeline-to-provision-multiple-environments-using-620900aae18
-### END MAIN
