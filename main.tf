@@ -22,34 +22,32 @@ data "azurerm_key_vault_secret" "secret2" {
 ### END KeyVault
 
 ### BEGIN VARs
-variable "location" {
-  description = "Location"
-  default     = "westeurope"
-}
-variable "resource_group_main" {
-  description = "ResourceGroupMain"
-  default     = "S2-RG-Project42"
-}
-variable "sql_instance_name" {
-  description = "SqlInstanceName"
-  default     = "sqlserver42x679e6e9"
-}
-variable "sql_instance_name_fqdn" {
-  description = "SqlInstanceNameFqdn"
-  default     = "sqlserver42x679e6e9.database.windows.net"
-}
-variable "sql_database_name" {
-  description = "SqlDatabaseName"
-  default     = "dba42"
-}
+#variable "location" {
+#  description = "Location"
+#  default     = "westeurope"
+#}
+#variable "resource_group_main" {
+#  description = "ResourceGroupMain"
+#  default     = "S2-RG-Project42"
+#}
+#variable "sql_instance_name" {
+#  description = "SqlInstanceName"
+#  default     = "sqlserver42x679e6e9"
+#}
+#variable "sql_instance_name_fqdn" {
+#  description = "SqlInstanceNameFqdn"
+#  default     = "sqlserver42x679e6e9.database.windows.net"
+#}
+#variable "sql_database_name" {
+#  description = "SqlDatabaseName"
+#  default     = "dba42"
+#}
 
 ### END VARs
 
 ### BEGIN MAIN
 
 resource "azurerm_resource_group" "project42" {
-#  name = "${var.resource_group_main}"
-#  location = "${var.location}"
   name = "${var.resource-group-name}"
   location = "${var.location-name}"
 }
@@ -103,13 +101,15 @@ resource "azurerm_storage_account" "storage_account42" {
   account_kind = "StorageV2"
  
   static_website {
-    index_document = "index.html"
+#    index_document = "index.html"
+     index_document = "${var.web-index}"
   }
 }
 
 #Add index.html to blob storage
 resource "azurerm_storage_blob" "website42" {
-  name                   = "index.html"
+#  name                   = "index.html"
+  name                   = "${var.web-index}"
   storage_account_name   = azurerm_storage_account.storage_account42.name
   storage_container_name = "$web"
   type                   = "Block"
