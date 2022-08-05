@@ -88,21 +88,33 @@ stages:
         commandOptions: '-input=false -var-file="vars-dev.tfvars"'
         environmentServiceNameAzureRM: 'S2-SPN-DevOps42-JackR-Project42'
 
-
-
-    - task: AzureDacpacDeployment@1
-      displayName: 'TF_SQL'
+#xxx
+    - task: SqlAzureDacpacDeployment@1
       inputs:
         azureSubscription: 'S2-SPN-DevOps42-JackR-Project42'
         AuthenticationType: 'server'
         ServerName: 'sqlserver42x679e6e9.database.windows.net'
-#     ServerName: '$(database-instance-name-fqdn)'
         DatabaseName: 'dba42'
-        SqlUsername: '$(DatabaseAdminUserName)'
-        SqlPassword: '$(DatabaseAdminPassword)'
+        SqlUsername: 'admindba'
+        SqlPassword: 'ABCabc123.42'
         deployType: 'SqlTask'
         SqlFile: 'dba42.sql'
         IpDetectionMethod: 'AutoDetect'
+#xxx
+
+#  - task: AzureDacpacDeployment@1
+#      displayName: 'TF_SQL'
+#      inputs:
+#        azureSubscription: 'S2-SPN-DevOps42-JackR-Project42'
+#        AuthenticationType: 'server'
+#        ServerName: 'sqlserver42x679e6e9.database.windows.net'
+##     ServerName: '$(database-instance-name-fqdn)'
+#        DatabaseName: 'dba42'
+#        SqlUsername: '$(DatabaseAdminUserName)'
+#        SqlPassword: '$(DatabaseAdminPassword)'
+#        deployType: 'SqlTask'
+#        SqlFile: 'dba42.sql'
+#        IpDetectionMethod: 'AutoDetect'
 
 - stage: TF_DECOMMISSION
   displayName: 'TF_DECOMMISSION'
