@@ -37,5 +37,5 @@ variable "web-index-document" {
 }
 variable "web-source-content" {
   description = "This is the source content for the static website"
-  default = "<h1>Hello Website42!</h1>"
+  default = "<h1><center>Hello Website42 - DEFAULT!</</center>h1>"
 }
