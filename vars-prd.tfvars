@@ -13,7 +13,7 @@ database-database1-name = "dba"
 ## Static website variables
 ##web-storage-account-name = "website42x679e6e9dev"
 ##web-index-document = "index.html"
-##web-source-content = "<h1><center>Hello Website42 - DEV!</center></h1>"
+##web-source-content = "<h1><center>Hello Website42 - PRD!</center></h1>"
 ### https://website42x679e6e9dev.z6.web.core.windows.net
 
 
