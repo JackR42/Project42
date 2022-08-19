@@ -20,3 +20,4 @@ database-database1-name = "dba"
 # https://thomasthornton.cloud/2020/09/22/deploying-terraform-from-develop-to-production-consecutively-using-azure-devops/
 # https://www.erwinstaal.nl/posts/azure-terraform-example-pipeline/
 # https://jamesrcounts.com/2021/07/07/terraform-pipelines-with-azure-devops.html
+# https://github.com/Azure/eu-digital-covid-certificates-reference-architecture
