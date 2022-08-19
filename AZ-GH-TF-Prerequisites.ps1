@@ -1,24 +1,29 @@
-## AZ-GH-TF-Pre-Reqs.ps1
+## AZ-GH-TF-Prequisites.ps1
 ## https://4bes.nl/2019/07/11/step-by-step-manually-create-an-azure-devops-service-connection-to-azure/
 
-#Log into Azure
-#az login
+#Log into Azure and verify current default Subscription
+# az login
 
-# Setup Variables
-$ProjectName = "FortyTwo"
+# Setup GENERIC Variables
+$ProjectName = "Project42"
+$Prefix = "S2-RG-"
+$region = "westeurope"
 
 $randomInt = Get-Random -Maximum 999999
 #$randomInt = 977542
-Write-Output "Service Connection Name (SPN): $randomInt"
+Write-Output "RandomInt: $randomInt"
 
-$subscriptionId=$(az account show --query id -o tsv)
-$subscriptionName = "S2-Visual Studio Ultimate with MSDN"
-$resourceGroupNameProject = "S2-RG-$ProjectName"
+$subscriptionId = $(az account show --query id -o tsv)
+$subscriptionName = $(az account show --query name -o tsv)
+
+# Setup CORE Variables
+$resourceGroupNameProject = "$Prefix$ProjectName"
 $resourceGroupNameCore = "$ResourceGroupNameProject-CORE"
-$storageName = "storagecr$ProjectName$randomInt".ToLower()
 $kvName = "keyvault$ProjectName$randomInt"
+$storageName = "storagecr$ProjectName$randomInt".ToLower()
+
+# Setup PROJECT Variables
 $spnName="SPN-$ProjectName" #AppName=SpnName
-$region = "westeurope"
 $websiteStorageName = "web$ProjectName$randomInt".ToLower()
 $SQLServerInstanceName = "sql$ProjectName$randomInt".ToLower()
 $dwp = Read-Host -Prompt "Dwp?"
@@ -69,6 +74,7 @@ az storage container create `
     --name "tfstate" `
     --auth-mode login
 
+###PROJECT
 # Create Terraform Service Principal and assign RBAC Role on Key Vault
 $spnJSON = az ad sp create-for-rbac --name $spnName `
     --role "Key Vault Secrets Officer" `
