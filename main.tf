@@ -7,38 +7,74 @@ terraform {
 }
 
 ### BEGIN KeyVault
-data "azurerm_key_vault" "project42" {
-  name                = "S2-KeyVault42"
-  resource_group_name = "S2-RG-DevOps42"
+data "azurerm_key_vault" "project" {
+  name                = "keyvaultProject42690593"
+  resource_group_name = "S2-RG-Project42-CORE "
+}
+data "azurerm_key_vault_secret" "secret0" {
+  name         = "ARM-RG-Project"
+  key_vault_id = data.azurerm_key_vault.project.id
 }
 data "azurerm_key_vault_secret" "secret1" {
-  name         = "DatabaseAdminUserName"
-  key_vault_id = data.azurerm_key_vault.project42.id
+  name         = "SQLServer-InstanceName"
+  key_vault_id = data.azurerm_key_vault.project.id
 }
 data "azurerm_key_vault_secret" "secret2" {
-  name         = "DatabaseAdminPassword"
-  key_vault_id = data.azurerm_key_vault.project42.id
+  name         = "SQLServer-InstanceAdminUserName"
+  key_vault_id = data.azurerm_key_vault.project.id
 }
+data "azurerm_key_vault_secret" "secret3" {
+  name         = "SQLServer-InstanceAdminPassword"
+  key_vault_id = data.azurerm_key_vault.project.id
+}
+data "azurerm_key_vault_secret" "secret4" {
+  name         = "SQLServer-Database1Name"
+  key_vault_id = data.azurerm_key_vault.project.id
+}
+data "azurerm_key_vault_secret" "secret5" {
+  name         = "WebSite-StorageName"
+  key_vault_id = data.azurerm_key_vault.project.id
+}
+
 ### END KeyVault
 
 ### BEGIN MAIN
-resource "azurerm_resource_group" "project42" {
-  name = "${var.resource-group-name}"
-  location = "${var.location-name}"
+resource "azurerm_resource_group" "project" {
+  name = data.azurerm_key_vault_secret.secret0.value
+  location = "westeurope"
 }
-
-resource "azurerm_mssql_server" "project42" {
- name = "${var.database-instance-name}"
+resource "azurerm_mssql_server" "project" {
+ name  = data.azurerm_key_vault_secret.secret1.value
  version = "12.0"
- resource_group_name = azurerm_resource_group.project42.name
- location = azurerm_resource_group.project42.location
- administrator_login = data.azurerm_key_vault_secret.secret1.value
- administrator_login_password = data.azurerm_key_vault_secret.secret2.value
+ resource_group_name = azurerm_resource_group.project.name
+ location = azurerm_resource_group.project.location
+ administrator_login = data.azurerm_key_vault_secret.secret2.value
+ administrator_login_password = data.azurerm_key_vault_secret.secret3.value
 }
-
-resource "azurerm_mssql_database" "project42" {
-  name = "${var.database-database1-name}"
-  server_id = azurerm_mssql_server.project42.id
+# Create FW rule to allow access from AZURE SERVICES, e.g. PowerApp
+resource "azurerm_mssql_firewall_rule" "project-fw0" {
+  name = "FirewallRule0"
+  server_id = azurerm_mssql_server.project.id
+  start_ip_address = "0.0.0.0"
+  end_ip_address = "0.0.0.0"
+}
+# Create FW rule to allow access from OFFICE
+resource "azurerm_mssql_firewall_rule" "project-fw1" {
+  name = "FirewallRule1"
+  server_id = azurerm_mssql_server.project.id
+  start_ip_address = "91.205.194.1"
+  end_ip_address = "91.205.194.1"
+}
+# Create FW rule to allow access from HOME
+resource "azurerm_mssql_firewall_rule" "project-fw2" {
+  name = "FirewallRule2"
+  server_id = azurerm_mssql_server.project.id
+  start_ip_address = "94.209.108.55"
+  end_ip_address = "94.209.108.55"
+}
+resource "azurerm_mssql_database" "project" {
+  name = data.azurerm_key_vault_secret.secret4.value
+  server_id = azurerm_mssql_server.project.id
   collation = "SQL_Latin1_General_CP1_CI_AS"
   max_size_gb = 2
   sku_name = "GP_S_Gen5_1"
@@ -48,49 +84,30 @@ resource "azurerm_mssql_database" "project42" {
   storage_account_type = "Local"
 # license_type = "LicenseIncluded"
 }
-
-# Create FW rule to allow access from OFFICE
-resource "azurerm_mssql_firewall_rule" "project42-fw1" {
-  name = "FirewallRule1"
-  server_id = azurerm_mssql_server.project42.id
-  start_ip_address = "91.205.194.1"
-  end_ip_address = "91.205.194.1"
-}
-# Create FW rule to allow access from HOME
-resource "azurerm_mssql_firewall_rule" "project42-fw2" {
-  name = "FirewallRule2"
-  server_id = azurerm_mssql_server.project42.id
-  start_ip_address = "94.209.108.55"
-  end_ip_address = "94.209.108.55"
-}
-
 #WebSite
 #Create Storage account
-resource "azurerm_storage_account" "storage_account42" {
-  name = "${var.web-storage-account-name}"
-  resource_group_name = azurerm_resource_group.project42.name
+resource "azurerm_storage_account" "project" {
+  name = data.azurerm_key_vault_secret.secret5.value
+  resource_group_name = azurerm_resource_group.project.name
  
-  location = azurerm_resource_group.project42.location
+  location = azurerm_resource_group.project.location
   account_tier = "Standard"
   account_replication_type = "LRS"
   account_kind = "StorageV2"
  
   static_website {
-     index_document = "${var.web-index-document}"
+     index_document = "index.html"
   }
 }
 
 #Add index.html to blob storage
-resource "azurerm_storage_blob" "website42" {
-  name                   = "${var.web-index-document}"
-  storage_account_name   = azurerm_storage_account.storage_account42.name
+resource "azurerm_storage_blob" "project" {
+  name                   = "index.html"
+  storage_account_name   = azurerm_storage_account.project.name
   storage_container_name = "$web"
   type                   = "Block"
   content_type           = "text/html"
-  source_content         = "${var.web-source-content}"
+  source_content         = "<H1><center>Hello project42 - DEV!</center></H1>"
 }
-# https://website42x679e6e9.z6.web.core.windows.net
+# https://<WebSite-StorageName>.z6.web.core.windows.net
 ### END MAIN
-
-# https://medium.com/bb-tutorials-and-thoughts/azure-building-different-environments-with-terraform-using-workspaces-66e1fb90f2d3
-# https://medium.com/microsoftazure/creating-a-single-secure-azure-devops-yaml-pipeline-to-provision-multiple-environments-using-620900aae18
