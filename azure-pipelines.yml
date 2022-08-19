@@ -91,6 +91,7 @@ stages:
       inputs:
         terraformVersion: 'latest'
     - task: TerraformTaskV3@3
+      displayName: TF_Init
       inputs:
         provider: 'azurerm'
         command: 'init'
@@ -100,7 +101,9 @@ stages:
         backendAzureRmContainerName: 'tfstate'
         backendAzureRmKey: 'main.tfstate'
     - task: TerraformTaskV3@3
+      displayName: TF_Destroy
       inputs:
         provider: 'azurerm'
         command: 'destroy'
+        commandOptions: '-input=false -var-file=vars-dev.tfvars'
         environmentServiceNameAzureRM: 'SPN-Project42'
