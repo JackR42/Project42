@@ -4,6 +4,7 @@
 if (OBJECT_ID('s42.f42') IS NOT NULL) drop function [s42].[f42]
 if (OBJECT_ID('s42.p42') IS NOT NULL) drop procedure [s42].[p42]
 if (OBJECT_ID('s42.v42') IS NOT NULL) drop view [s42].[v42]
+if (OBJECT_ID('s42.t42') IS NOT NULL) drop table [s42].[t43]
 if (OBJECT_ID('s42.t42') IS NOT NULL) drop table [s42].[t42]
 if (SCHEMA_ID('s42') IS NOT NULL) drop schema [s42]
 go
